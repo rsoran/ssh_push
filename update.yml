@@ -1,0 +1,20 @@
+---
+- name: Update and Upgrade Ubuntu systems
+  hosts: prod
+  become: true
+  tasks:
+    - name: Print message before update and upgrade
+      debug:
+        msg: "Performing update and upgrade on {{ inventory_hostname }}"
+
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages
+      apt:
+        upgrade: dist
+
+    - name: Print message after update and upgrade
+      debug:
+        msg: "Update and upgrade completed on {{ inventory_hostname }}"
